@@ -39,5 +39,12 @@ return [
 	],
 	'system' => [
 		'list' => 'system.index'
-	]
+	],
+    'callboard' => [
+        'list' 		=> 'callboard.admin',
+        'create' 	=> 'callboard.admin',
+        'edit' 		=> 'callboard.admin',
+        'destroy' 	=> 'callboard.admin',
+        'show' 		=> 'callboard.system',
+    ]
 ];

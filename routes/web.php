@@ -15,9 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/article/{url}', 'CallboardController@getArticle');
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::group(['prefix' => 'callboard', 'middleware' => ['auth']],function ($router)
+{
+	$router->get('/','CallboardController@index');
+	$router->get('/i18n', 'CallboardController@dataTableI18n');
+	$router->get('/ajaxIndex', 'CallboardController@ajaxIndex');
+});
 
 Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => ['auth']],function ($router)
 {
@@ -32,6 +39,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => ['auth'
 	// 菜单
 	require(__DIR__ . '/admin/menu.php');
 
+	require(__DIR__ . '/admin/callboard.php');
 });
 
 // 后台系统日志

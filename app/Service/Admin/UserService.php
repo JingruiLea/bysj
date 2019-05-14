@@ -54,7 +54,7 @@ class UserService extends BaseService
 			}
 		}
 
-		return [
+        return [
 			'draw' => $draw,
 			'recordsTotal' => $result['count'],
 			'recordsFiltered' => $result['count'],

@@ -118,7 +118,7 @@ Eof;
 	 * @date   2016-11-04T16:29:51+0800
 	 * @param  [type]                   $menus [description]
 	 * @param  string                   $pid   [description]
-	 * @return [type]                          [description]
+	 * @return [type]                           [description]
 	 */
 	public function topMenuList($menus,$pid = '')
 	{

@@ -2,16 +2,16 @@
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>{!!trans('admin/permission.title')!!}</h2>
+            <h2>编辑公告</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="{{url('admin/dash')}}">{!!trans('admin/breadcrumb.home')!!}</a>
                 </li>
                 <li>
-                    <a href="{{url('admin/permission')}}">{!!trans('admin/breadcrumb.permission.list')!!}</a>
+                    <a href="{{url('/callboard')}}">公告列表</a>
                 </li>
                 <li class="active">
-                    <strong>{!!trans('admin/breadcrumb.permission.edit')!!}</strong>
+                    <strong>公告编辑</strong>
                 </li>
             </ol>
         </div>
@@ -21,7 +21,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>{!!trans('admin/permission.edit')!!}</h5>
+                        <h5>编辑公告</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -32,41 +32,34 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <form method="post" action="{{url('admin/permission/'.$permission->id)}}" class="form-horizontal">
+                        <form method="post" action="{{url('/admin/callboard/'.$callboard->id)}}" class="form-horizontal">
                             {{csrf_field()}}
                             {{method_field('PUT')}}
-                            <input type="hidden" name="id" value="{{$permission->id}}">
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label class="col-sm-2 control-label">{{trans('admin/permission.model.name')}}</label>
+                            <input type="hidden" name=""id value="{{$callboard->id}}">
+                            <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+                                <label class="col-sm-2 control-label">标题</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="name" value="{{old('name',$permission->name) }}" placeholder="{{trans('admin/permission.model.name')}}">
-                                    @if ($errors->has('name'))
-                                        <span class="help-block m-b-none text-danger">{{ $errors->first('name') }}</span>
+                                    <input type="text" class="form-control" name="title" value="{{old('name',$callboard->title) }}" placeholder="公告标题">
+                                    @if ($errors->has('title'))
+                                        <span class="help-block m-b-none text-danger">{{ $errors->first('title') }}</span>
                                     @endif
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            <div class="form-group{{ $errors->has('slug') ? ' has-error' : '' }}">
-                                <label class="col-sm-2 control-label">{{trans('admin/permission.model.slug')}}</label>
+                            <div class="form-group{{ $errors->has('author_name') ? ' has-error' : '' }}">
+                                <label class="col-sm-2 control-label">作者</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="slug" value="{{old('slug',$permission->slug)}}" placeholder="{{trans('admin/permission.model.slug')}}">
-                                    @if ($errors->has('slug'))
-                                        <span class="help-block m-b-none text-danger">{{ $errors->first('slug') }}</span>
+                                    <input type="text" class="form-control" name="author_name" value="{{old('author_name',$callboard->author_name)}}" placeholder="作者">
+                                    @if ($errors->has('author_name'))
+                                        <span class="help-block m-b-none text-danger">{{ $errors->first('author_name') }}</span>
                                     @endif
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">{{trans('admin/permission.model.description')}}</label>
+                                <label class="col-sm-2 control-label">内容</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="description" value="{{old('description',$permission->description)}}" placeholder="{{trans('admin/permission.model.description')}}">
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">{{trans('admin/permission.model.model')}}</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="model" value="{{old('model',$permission->model)}}" placeholder="{{trans('admin/permission.model.model')}}">
+                                    <input type="text" class="form-control" name="content" value="{{old('content',$callboard->content)}}" placeholder="内容">
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
