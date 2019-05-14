@@ -40,6 +40,8 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','middleware' => ['auth'
 	require(__DIR__ . '/admin/menu.php');
 
 	require(__DIR__ . '/admin/callboard.php');
+    require(__DIR__ . '/admin/checkinlist.php');
+	require(__DIR__ . '/admin/checkin.php');
 });
 
 // 后台系统日志
