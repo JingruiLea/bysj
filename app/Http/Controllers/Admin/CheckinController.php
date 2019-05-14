@@ -44,7 +44,7 @@ class CheckinController extends Controller
     }
 
     public function checkIn(){
-        if(request()->checkintime - request() -> time > 5 * 60){
+        if(request()->checkintime - request() -> time < 5 * 60){
             echo "签到成功!";
             $c = checkin::create(request()->all());
             $c -> studentname = Auth::user()->username;

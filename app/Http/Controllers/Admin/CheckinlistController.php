@@ -62,7 +62,7 @@ class CheckinlistController extends Controller
                 $result[] = [
                     "id" => $v -> id,
                     'time' => $v -> created_at ,
-                    'techername' => $v -> techername,
+                    'techername' => $v -> teachername,
                     'studentname' => $v ->studentname,
                 ];
             }
