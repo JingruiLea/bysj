@@ -55,14 +55,14 @@ class CheckinlistController extends Controller
 
     public function ajaxIndex()
     {
-        $data = checkin::all();
+        $data = checkin::all()->where('teachername', Auth::user()->username);
         $result = [];
         if ($data) {
             foreach ($data as $v) {
                 $result[] = [
-                    "id" => $v -> id,
+                    "id" => $v -> time,
                     'time' => $v -> created_at ,
-                    'techername' => $v -> teachername,
+                    'teachername' => $v -> teachername,
                     'studentname' => $v ->studentname,
                 ];
             }

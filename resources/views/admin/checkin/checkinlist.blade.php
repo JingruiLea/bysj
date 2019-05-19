@@ -43,9 +43,9 @@
                                 <thead>
                                 <tr>
                                     <th>签到编号</th>
-                                    <th>老师姓名</th>
+                                    <th>老师编号</th>
                                     <th>签到时间</th>
-                                    <th>学生姓名</th>
+                                    <th>学生学号</th>
                                 </tr>
                                 </thead>
                                 <tbody>

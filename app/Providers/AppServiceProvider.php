@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\role_user;
+use App\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,14 @@ class AppServiceProvider extends ServiceProvider
         view()->composer(
             'layouts.partials.sidebar', 'App\Http\ViewComposers\MenuComposer'
         );
+
+        User::created(function ($user) {
+            app('log')->info($user);
+            role_user::create([
+                'role_id' => 2,
+                'user_id' => $user->id,
+            ])->save();
+        });
     }
 
     /**

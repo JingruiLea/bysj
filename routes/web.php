@@ -12,12 +12,26 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+   return redirect('/admin/dash');
 });
 
 Route::get('/article/{url}', 'CallboardController@getArticle');
 
 Auth::routes();
+
+
+Route::group(['prefix' => 'homework', 'middleware' => ['auth']],function ($router)
+{
+    $router->get('/','HomeworkController@index');
+    $router->get('/i18n', 'InfoController@dataTableI18n');
+    $router->get('/ajaxIndex', 'HomeworkController@ajaxIndex');
+});
+Route::group(['prefix' => 'userinfo', 'middleware' => ['auth']],function ($router)
+{
+    $router->get('/','InfoController@index');
+    $router->get('/i18n', 'InfoController@dataTableI18n');
+    $router->get('/ajaxIndex', 'InfoController@ajaxIndex');
+});
 
 Route::group(['prefix' => 'callboard', 'middleware' => ['auth']],function ($router)
 {
@@ -58,3 +72,5 @@ Route::group(['prefix' => 'admin/log','middleware' => ['auth','check.permission:
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::resource('userinfo','InfoController');
+Route::resource('homework','HomeworkController');

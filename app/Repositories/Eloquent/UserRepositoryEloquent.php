@@ -1,5 +1,6 @@
 <?php
 namespace App\Repositories\Eloquent;
+use App\Events\UserSaving;
 use Prettus\Repository\Eloquent\BaseRepository;
 use App\Repositories\Contracts\UserRepository;
 use App\User;
@@ -9,6 +10,7 @@ use App\User;
  */
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
+
     /**
      * Specify Model class name
      *
@@ -61,5 +63,4 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     //     }
     //     return false;
     // }
-    
 }

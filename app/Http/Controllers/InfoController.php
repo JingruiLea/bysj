@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
+use App\userinfo;
 use Illuminate\Http\Request;
 use App\Models\Callboard;
 use App\Http\Requests\CallboardRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class InfoController extends Controller
 {
@@ -21,7 +23,17 @@ class InfoController extends Controller
      */
     public function index()
     {
-        return view('user.fillinfo');
+        $u = userinfo::all()->
+        where('username', Auth::user()->username);
+        if ($u==null){
+
+        }else{
+            $u = $u -> last();
+        }
+        return view('user.fillinfo',
+            ['user'=>Auth::user(),
+                'info'=>$u,
+                    ]);
     }
     /**
      * datatable国际化
@@ -82,21 +94,26 @@ class InfoController extends Controller
         return view('callboard.create');
     }
 
-    public function store(CallboardRequest $request){
-        $callboard = Callboard::create($request->all());
+    public function store(Request $request){
+        $u = userinfo::all()->where('username',$request->input('username'))->last();
+        if($u!=null){
+            $u->delete();
+        }
+        $callboard = userinfo::create($request->all());
         $callboard->save();
-        return redirect('/admin/callboard');
-    }
-    public function update(CallboardRequest $request, $id){
-        $callboard = Callboard::find($id);
-        $callboard->update($request->all());
-        $callboard->save();
-        return redirect('/admin/callboard');
+        return redirect('/callboard');
     }
 
-    public function destory(CallboardRequest $request, $id){
-        $callboard = Callboard::find($id);
+    public function update(Request $request, $id){
+        $callboard = userinfo::find($id);
+        $callboard->update($request->all());
+        $callboard->save();
+        return redirect('/callboard');
+    }
+
+    public function destory(Request $request, $id){
+        $callboard = userinfo::find($id);
         $callboard->delete();
-        return redirect('/admin/callboard');
+        return redirect('/callboard');
     }
 }
