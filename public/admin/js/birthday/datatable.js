@@ -18,7 +18,7 @@ var TableDatatablesAjax = function() {
                 "regex": true
             },
             "ajax": {
-                'url' : getBaseUrl() + '/ajaxIndex',
+                'url' : getBaseUrl() + '/list',
             },
             "pagingType": "full_numbers",
             "orderCellsTop": true,
@@ -40,24 +40,24 @@ var TableDatatablesAjax = function() {
             ],
             "columns": [
                 {
-                    "data": "teachername",
-                    "name" : "teachername",
+                    "data": "lasttime",
+                    "name" : "lasttime",
                     "orderable" : true,
                 },
                 {
-                    "data": "studentname",
-                    "name" : "studentname",
+                    "data": "birthday",
+                    "name" : "birthday",
                     "type": "html",
                     "orderable" : false,
                 },
                 {
-                    "data": "homeworkname",
-                    "name": "homeworkname",
+                    "data": "name",
+                    "name": "name",
                     "orderable" : true,
                 },
                 {
-                    "data": "file",
-                    "name": "file",
+                    "data": "username",
+                    "name": "username",
                     "type": "html",
                     "orderable" : false,
                 }

@@ -43,7 +43,7 @@
                         <div class="table-responsive">
                             抽取以下同学:
                             @foreach ($data as $v)
-                                <p>{{dd($v)}}</p>
+                                <p>{{$v->name.' '.$v->username}}</p>
                             @endforeach
                         </div>
                     </div>

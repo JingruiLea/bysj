@@ -40,24 +40,25 @@ var TableDatatablesAjax = function() {
             ],
             "columns": [
                 {
-                    "data": "id",
-                    "name" : "id",
+                    "data": "teachername",
+                    "name" : "teachername",
                     "orderable" : true,
                 },
                 {
-                    "data": "title",
-                    "name" : "title",
+                    "data": "studentname",
+                    "name" : "studentname",
                     "type": "html",
                     "orderable" : false,
                 },
                 {
-                    "data": "time",
-                    "name": "time",
+                    "data": "homeworkname",
+                    "name": "homeworkname",
                     "orderable" : true,
                 },
                 {
-                    "data": "author",
-                    "name": "author",
+                    "data": "file",
+                    "name": "file",
+                    "type": "html",
                     "orderable" : false,
                 }
             ],

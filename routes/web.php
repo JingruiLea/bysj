@@ -19,13 +19,44 @@ Route::get('/article/{url}', 'CallboardController@getArticle');
 
 Auth::routes();
 
+Route::get('/birthday','ClassfeeController@birthday');
+Route::get('/birthday/list','ClassfeeController@birthdaylist');
+Route::get('/birthday/i18n','InfoController@dataTableI18n');
+
 
 Route::group(['prefix' => 'homework', 'middleware' => ['auth']],function ($router)
 {
     $router->get('/','HomeworkController@index');
     $router->get('/i18n', 'InfoController@dataTableI18n');
     $router->get('/ajaxIndex', 'HomeworkController@ajaxIndex');
+    $router->get('/upload/{id}', 'HomeworkController@upload');
+    $router->post('/upload', 'HomeworkController@update');
+    $router->post('/create', 'HomeworkController@createHomework');
+
+
 });
+
+Route::group(['prefix' => 'classfee', 'middleware' => ['auth']],function ($router)
+{
+    $router->get('/','ClassfeeController@index');
+    $router->get('/i18n', 'ClassfeeController@dataTableI18n');
+    $router->get('/ajaxIndex', 'ClassfeeController@ajaxIndex');
+    $router->get('/upload/{id}', 'ClassfeeController@upload');
+    $router->get('/create', 'ClassfeeController@create');
+    $router->post('/create', 'ClassfeeController@createRecord');
+
+});
+
+Route::group(['prefix' => 'random', 'middleware' => ['auth']],function ($router)
+{
+    $router->get('/','RandomController@index');
+    $router->get('/i18n', 'RandomController@dataTableI18n');
+    $router->get('/ajaxIndex', 'RandomController@ajaxIndex');
+    $router->get('/upload/{id}', 'RandomController@upload');
+    $router->get('/list', 'RandomController@list_');
+});
+
+
 Route::group(['prefix' => 'userinfo', 'middleware' => ['auth']],function ($router)
 {
     $router->get('/','InfoController@index');

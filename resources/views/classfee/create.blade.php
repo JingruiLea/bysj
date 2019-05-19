@@ -8,7 +8,7 @@
                     <a href="{{url('admin/dash')}}">{!!trans('admin/breadcrumb.home')!!}</a>
                 </li>
                 <li>
-                    <a href="{{url('/callboard')}}">班费记录</a>
+                    <a href="{{url('/classfee')}}">班费记录</a>
                 </li>
                 <li class="active">
                     <strong>创建班费记录</strong>
@@ -37,20 +37,20 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">收入/支出</label>
                                 <div class="col-sm-10">
-                                    <input type="radio" class="form-control" name="type" value="收入">
-                                    <input type="radio" class="form-control" name="type" value="支出">
+                                    <label><input type="radio" class="form-control" name="type" value="收入">收入</label>
+                                    <label style="position: absolute;left:70px;"><input type="radio" class="form-control" name="type" value="支出">支出</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">金额</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="record" >
+                                    <input type="text" class="form-control" name="amount" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">备注</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="in" >
+                                    <input type="text" class="form-control" name="note" >
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>

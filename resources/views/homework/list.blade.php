@@ -15,7 +15,13 @@
                 </li>
             </ol>
         </div>
-
+        @permission(config('admin.permissions.user.create'))
+        <div class="col-lg-2">
+            <div class="title-action">
+                <a href="{{url('/homework/create')}}" class="btn btn-info">创建作业提交</a>
+            </div>
+        </div>
+        @endpermission
     </div>
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
@@ -38,11 +44,10 @@
                             <table class="table table-striped table-bordered table-hover dataTablesAjax" >
                                 <thead>
                                 <tr>
-                                    <th>{{trans('callboard.table.id')}}</th>
-                                    <th>{{trans('callboard.table.title')}}</th>
-                                    <th>{{trans('callboard.table.time')}}</th>
-                                    <th>{{trans('callboard.table.author')}}</th>
-                                    <th>操作</th>
+                                    <th>教师工号</th>
+                                    <th>学生姓名</th>
+                                    <th>作业</th>
+                                    <th>提交</th>
                                 </tr>
                                 </thead>
                                 <tbody>

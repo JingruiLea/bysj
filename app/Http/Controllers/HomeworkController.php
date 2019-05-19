@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Callboard;
 use App\Http\Requests\CallboardRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class HomeworkController extends Controller
 {
@@ -24,13 +25,11 @@ class HomeworkController extends Controller
      */
     public function index()
     {
-        $u = userinfo::all()->
-        where('username', Auth::user()->username);
-        if ($u==null){
-            $u = 0;
-        }else{
-            $u = $u -> last();
-        }
+
+        $u = homework::
+        where('teachername', Auth::user()->username)
+            ->orWhere('studentusername', Auth::user()->username);
+
         return view('homework.list',
             ['user'=>Auth::user(),
                 'info'=>$u,
@@ -62,25 +61,32 @@ class HomeworkController extends Controller
         return view('callboard.article', $data);
     }
 
+
+
     public function ajaxIndex()
     {
-        $data = homework::all()->where('teachername', Auth::user()->name)->orWhere('studentname', Auth::user()->name);
+        $user = Auth::user();
+//        $data = \App\homework::where(function($q) use($user) {
+//            return $q
+//                ->where('teachername', $user->username)
+//            ->orWhere('studentusername', $user->username);
+//        })->get();
+        $data = homework::all();
         $result = [];
         if ($data) {
             foreach ($data as $v) {
                 $result[] = [
                     "teachername" => $v -> teachername,
                     'studentname' => $v -> studentname,
-                    'time' => $v -> created_at ,
-                    'author' => $v -> author_name,
-                    'actionButton' => $v -> getActionButtonAttribute(),
+                    'homeworkname' => $v -> homeworkname ,
+                    'file' => '<a href="homework/upload/'.$v -> id.'">提交</a>',
                 ];
             }
         }
         $res = [
             'draw' => 1,
-            'recordsTotal' => 5,
-            'recordsFiltered' => 5,
+            'recordsTotal' => count($result),
+            'recordsFiltered' => count($result),
             'data' => $result,
         ];
         return response()->json($res);
@@ -92,8 +98,17 @@ class HomeworkController extends Controller
             'callboard' => $callboard,
         ]);
     }
-    public function createArticle(){
-        return view('callboard.create');
+    public function create(){
+        return view('homework.create');
+    }
+
+    public function createHomework(Request $request){
+        homework::create([
+            'homeworkname' => $request->input('homeworkname'),
+            'teachername' => Auth::user()->username(),
+            'studentname' => Auth::user()->name(),
+        ])->save();
+        return redirect('/homework');
     }
 
     public function store(Request $request){
@@ -108,16 +123,28 @@ class HomeworkController extends Controller
         return redirect('/callboard');
     }
 
-    public function update(Request $request, $id){
-        $callboard = userinfo::find($id);
-        $callboard->update($request->all());
+    public function update(Request $request){
+        $callboard = homework::find($request->input('id'));
+        if(!$callboard){
+            throw new \Exception('homework not found', 404);
+        }
+        $params = $request->all();
+        $path = Storage::putFile('homework', $request->file('homework'));
+
+        $callboard->update($params);
+        $callboard->update(['file'=>$path]);
         $callboard->save();
-        return redirect('/callboard');
+        return redirect('/homework');
     }
 
     public function destory(Request $request, $id){
         $callboard = userinfo::find($id);
         $callboard->delete();
         return redirect('/callboard');
+    }
+
+    public function upload($id){
+        $homework = homework::find($id);
+        return view('homework.upload',['id'=>$id, 'homework'=>$homework]);
     }
 }

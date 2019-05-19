@@ -18,7 +18,7 @@
         @permission(config('admin.permissions.user.create'))
         <div class="col-lg-2">
             <div class="title-action">
-                <a href="{{url('/homework/create')}}" class="btn btn-info">创建班费记录</a>
+                <a href="{{url('/classfee/create')}}" class="btn btn-info">创建班费记录</a>
             </div>
         </div>
         @endpermission
@@ -63,7 +63,7 @@
 @section('js')
     <script src="{{asset('vendors/dataTables/datatables.min.js')}}"></script>
     <script src="{{asset('vendors/layer/layer.js')}}"></script>
-    <script src="{{asset('admin/js/homework/datatable.js')}}"></script>
+    <script src="{{asset('admin/js/classfee/datatable.js')}}"></script>
     <script type="text/javascript">
         $(document).on('click','.destroy_item',function() {
             var _item = $(this);
