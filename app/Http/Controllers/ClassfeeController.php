@@ -86,6 +86,7 @@ class ClassfeeController extends Controller
                 ];
             }
         }
+
         $res = [
             'draw' => 1,
             'recordsTotal' => count($result),

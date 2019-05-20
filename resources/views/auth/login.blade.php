@@ -37,6 +37,9 @@
     <input type="submit" value="立即登陆" class="submit_btn"/>
     </dd>
     <dd>
+    <a href="/register"><input type="button" value="注册" class="submit_btn"/></a>
+    </dd>
+    <dd>
     <p>学生管理系统</p>
     <p>v1.0.0</p>
     </dd>

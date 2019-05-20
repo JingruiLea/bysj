@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <form method="post" action="{{url('/userinfo')}}" class="form-horizontal">
+                        <form method="post" action="{{url('/userinfo')}}" class="form-horizontal" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">照片</label>

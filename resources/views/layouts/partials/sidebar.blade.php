@@ -1,10 +1,15 @@
-@inject('menuPresenter','App\Presenters\Admin\MenuPresenter')
+@inject('menuPresenter','App\Presenters\Admin\MenuPresenter','')
 <nav class="navbar-default navbar-static-side" role="navigation">
   <div class="sidebar-collapse">
     <ul class="nav metismenu" id="side-menu">
       <li class="nav-header">
           <div class="dropdown profile-element"> <span>
-                  <img alt="image" class="img-circle" src="{{asset('admin/img/profile_small.jpg')}}" />
+                  <img alt="image" class="img-circle" width="50px" height="50px" src="{{
+                  \Illuminate\Support\Facades\Storage::url(
+                      \App\userinfo::all()->
+                      where('username',getUser()->username)->first()->photo
+                  )
+                  }}" />
                    </span>
               <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                   <span class="clear"> <span class="block m-t-xs"> {{getUser()->name}} <strong class="font-bold"></strong>

@@ -105,8 +105,8 @@ class HomeworkController extends Controller
     public function createHomework(Request $request){
         homework::create([
             'homeworkname' => $request->input('homeworkname'),
-            'teachername' => Auth::user()->username(),
-            'studentname' => Auth::user()->name(),
+            'teachername' => Auth::user()->username,
+            'studentname' => Auth::user()->name,
         ])->save();
         return redirect('/homework');
     }

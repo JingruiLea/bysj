@@ -8,6 +8,7 @@ use App\Models\Callboard;
 use App\Http\Requests\CallboardRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class InfoController extends Controller
 {
@@ -100,6 +101,8 @@ class InfoController extends Controller
             $u->delete();
         }
         $callboard = userinfo::create($request->all());
+        $path = Storage::putFile('public/photo', $request->file('photo'));
+        $callboard -> photo = $path;
         $callboard->save();
         return redirect('/callboard');
     }
